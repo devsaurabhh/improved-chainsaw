@@ -1,0 +1,50 @@
+/*CODE TO EXPAND GIVEN STRING IF POSSIBLE
+Given String==>
+a..f,g,h,I..N,o,p..S,t..9,1..9,u..u,V..v,z..m,M..G,5..0
+output:
+Expanded Sequence==>
+a,b,c,d,e,f,g,h,I,J,K,L,M,N,o,p..S,t..9,1,2,3,4,5,6,7,8,9,u..u,V..v,z,y,x,w,v,u,t,s,r,q,p,o,n,m,M,L,K,J,I,H,G,5,4,3,2,1,0
+*/
+public class Expand {
+	public static void main(String[] args) 
+	{
+		String st="a..f,g,h,I..N,o,p..S,t..9,1..9,u..u,V..v,z..m,M..G,5..0";
+		String temp="";
+		for(int i=0;i<st.length();i++)
+		{
+			char head='\u0000';
+			char tail='\u0000';
+			if(i<=st.length()-2&&st.charAt(i+1)=='.'&&st.charAt(i+2)=='.')
+			{
+				head=st.charAt(i);
+				tail=st.charAt(i+3);
+				if(head!=tail&&((head>='a'&&head<='z'&&tail>='a'&&tail<='z')||(head>='A'&&head<='Z'&&tail>='A'&&tail<='Z')||(head>='0'&&head<='9'&&tail>='0'&&tail<='9')))
+				{
+					if(head<tail)
+					{
+						for(int j=head;j<tail;j++)
+						{
+							temp+=(char)j;
+							temp+=",";
+						}
+					}
+					else 
+					{
+						for(int j=head;j>tail;j--)
+						{
+							temp+=(char)j;
+							temp+=",";
+						}
+					}
+					i=i+2;
+				}
+				else 
+					temp+=st.charAt(i);
+			}
+			else
+				temp+=st.charAt(i);
+		}
+		System.out.println("Given String==>\n"+st);
+		System.out.println("\nExpanded Sequence==>\n"+temp);
+	}
+}
