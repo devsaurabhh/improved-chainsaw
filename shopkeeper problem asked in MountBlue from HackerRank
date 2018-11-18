@@ -1,0 +1,55 @@
+//This problem was asked in MountBlue preliminary test from hacker rank.
+//A shopkeeper owner sells his items at his marked price but manager of that shop sells the items at different price. Find
+//number of items he has sold at different price.
+//suppose input: String items[]={"rice","ketchup","wheat","sugar"}; float pri[]={1.0,2.0,3.1,4}; String managerItems={"wheat","rice"};
+// managerPri={4.3,2.4}; output: 2
+import java.util.*;
+class Shopkeeper
+{
+public static void main(String[] args) 
+{
+	Scanner sc = new Scanner(System.in);
+	int osize=sc.nextInt();
+	List<String> oitems=new ArrayList(osize);
+	int i=0;
+	while(i<osize)
+	{
+		oitems.add(sc.next());
+		i++;
+	}
+	List<Float> opri=new ArrayList(oitems.size());
+	i=0;
+	while(i<oitems.size())
+	{
+		opri.add(sc.nextFloat());
+		i++;
+	}
+	int dsize=sc.nextInt();
+	List<String> ditems=new ArrayList(dsize);
+	i=0;
+	while(i<dsize)
+	{
+		ditems.add(sc.next());
+		i++;
+	}
+	List<Float> dpri=new ArrayList(ditems.size());
+	i=0;
+	while(i<ditems.size())
+	{
+		dpri.add(sc.nextFloat());
+		i++;
+	}
+	Iterator it = ditems.iterator();
+	i=0;
+	while(it.hasNext())
+	{
+		Object o=it.next();
+		if(oitems.contains(o))
+		{
+			if(opri.get(oitems.indexOf(o)).equals (dpri.get(ditems.indexOf(o)))==false)
+			i++;
+		}
+	}
+	System.out.println(i);
+}
+}
